@@ -1,0 +1,93 @@
+<footer>
+  <div class="container">
+    <div class="footer_box">
+        <div class="footer_grid">
+          <div class="left">
+            <div class="grid half">
+              <ul class="collections">
+                <p class="c_title">Collections</p>
+                {% for collection in collections %}
+                  {% unless collection.title contains 'New Gold' or  
+                  collection.title contains 'New Releases' or 
+                  collection.title contains 'Everybody' or 
+                  collection.title contains 'Abstract 01' or 
+                  collection.title contains 'Abstract 02' %}
+                  <li>
+                      <a href="{{ collection.url }}">{{ collection.title }}</a>
+                  </li>
+                  {% endunless %}
+                {% endfor %}
+            </ul>
+              <ul class="categories">
+                <p class="c_title">Categories</p>
+                {% for collection in collections %}
+                  {% if collection.title contains 'New Gold' or  
+                  collection.title contains 'New Releases' or 
+                  collection.title contains 'Everybody' or 
+                  collection.title contains 'Abstract 01' or 
+                  collection.title contains 'Abstract 02' %}
+                  <li>
+                      <a href="{{ collection.url }}">{{ collection.title }}</a>
+                  </li>
+                  {% endif %}               
+                {% endfor %}
+              </ul>
+            </div>
+            <p class="mt-30">
+               <a href="#" class="btn primary">Shop All</a>
+            </p>
+          </div>
+          <div class="right">
+            <p class="c_title">About</p>
+            <h3 class="about-message">
+              <p>Wolf Circus is a line of demi-fine jewelry thoughtfully designed and hand made in Vancouver, BC. We’re created by, run by, and powered by women — with pieces for you, whoever you choose to be! Wolf Circus aims to inspire others to embrace their confidence during their daily hustle.</p>
+            </h3>
+            <p class="mt-30">
+              <a href="#" class="btn primary">More Info</a>
+            </p>
+          </div>
+        </div>
+      </div>
+  </div>  
+</footer>
+    <section class="extra-content-section">
+      <div class="container">
+        <div class="box">
+          <div class="content">
+            <div class="left">
+               <ul class="sm-row page_links">
+              <li>
+                <a>FAQ</a>
+              </li>
+              <li>
+                <a>Shipping + Returns</a>
+              </li>
+              <li>
+                <a>Jewelry Care & Materials</a>
+              </li>
+              <li>
+                <a>About</a>
+              </li>
+            </ul>
+               <p class="sm-row">
+                <a>Terms of Service</a>
+              </p>
+            </div>
+            <div class="right">
+              <ul class="sm-row sm_links">
+                <li>
+                  <a>Facebook</a>
+                </li>
+                <li>
+                  <a>Instagram</a>
+                </li>
+                <li>
+                  <a>Instagram</a>
+                </li>
+              </ul>
+              <p class="copyright-text sm-row">Copyright © 2020, The XYZ Shop, LLC.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>

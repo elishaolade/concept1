@@ -1,0 +1,148 @@
+<section class="footer">
+    <div class="container">
+        <div class="footer-box">
+            <div class="content">
+                <div class="row">
+                    <div class="content">
+                        <div class="left">
+                            <div class="categories">
+                                <p class="title">Categories</p>
+                                <ul>
+                                    {% for collection in collections %}
+                                        {% unless collection.title contains 'New Gold' or  
+                                              collection.title contains 'New Releases' or 
+                                              collection.title contains 'Everybody' or 
+                                              collection.title contains 'Abstract 01' or 
+                                              collection.title contains 'Abstract 02' %}
+                                            <li>
+                                                <a href="{{ collection.url }}">{{ collection.title }}</a>
+                                            </li>
+                                        {% endunless %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="collections">
+                                <p class="title">Collections</p>
+                                <ul>
+                                    {% for collection in collections %}
+                                        {% if collection.title contains 'New Gold' or  
+                                            collection.title contains 'New Releases' or 
+                                            collection.title contains 'Everybody' or 
+                                            collection.title contains 'Abstract 01' or 
+                                            collection.title contains 'Abstract 02' %}
+                                            <li>
+                                                <a href="{{ collection.url }}">{{ collection.title }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            {% if section.settings.about-text != blank %}
+                                <div class="about-content">
+                                    <p class="title">About</p>
+                                    <div class="about-content">
+                                        <p>{{ section.settings.about-text }}</p>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="logo">
+                            <img src="{{ 'lion.svg' | asset_url }}" alt="asset">
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="sub-row">
+                    <div class="container">
+                        <div class="footer-details">
+                            <ul>
+                                {% for block in section.blocks %}
+                                    {% if block.type == "link" %}
+                                        {% assign page_handle = block.settings.page %}
+                                        {% assign page = pages['{{page_handle}}'] %}
+                                        <li>
+                                            <a href="{{ pages[block.settings.page].url }}">
+                                                {{ pages[block.settings.page].title }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <ul>
+                                {% for block in section.blocks %}
+                                    {% if block.type == "social-link" %}
+                                        <li>
+                                            <a href="{{ block.settings.social_media_url }}">
+                                                {{ block.settings.social_media_name }}
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% schema %}
+  {
+    "name": "Footer",
+    "default":{
+      "settings":{
+        
+      }
+    },
+    "settings":[
+      {
+        "id":"about-text",
+        "type":"text",
+        "label": "About"
+      },
+      {
+        "id":"about-link",
+        "type":"page",
+        "label":"Page Link"
+      },
+      {
+        "id":"footer-logo",
+        "type":"image_picker",
+        "label":"Logo"
+      }
+    ],
+    "blocks": [
+      {
+          "type": "link",
+          "name": "Links",
+          "limit": 5,
+          "settings": [
+            {
+                "id":"page",
+                "type":"page",
+                "label": "Link"
+            }
+          ]
+      },
+      {
+        "type": "social-link",
+        "name": "Social Media Links",
+        "limit": 3,
+        "settings": [
+          {
+              "id":"social_media_name",
+              "type":"text",
+              "label": "Social Media"
+          },
+          {
+            "id":"social_media_url",
+            "type":"text",
+            "label":"Media Link"
+          }
+        ]
+    }
+    ]
+  }
+{% endschema %}

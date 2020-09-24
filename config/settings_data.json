@@ -1,0 +1,29 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "sections":{
+        "header":{
+
+        },
+        "hero": {
+          "type": "hero",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/pink-black-and-yellow-abstract-painting-2911519.jpg",
+            "heroCollection": ""
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "about-text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean efficitur sollicitudin dui ac interdum. In neque arcu, porttitor sit amet eros at, volutpat accumsan nulla. Sed lorem lorem, porta vel metus quis, ultrices hendrerit tellus. Mauris ut eleifend purus, eget ultrices quam. ",
+            "about-link": ""
+          }
+        }
+      },
+      "content_for_index": [
+        "hero"
+      ]
+    }
+  }
+}

@@ -1,0 +1,63 @@
+    <section id="products">
+      <div class="collection-display">
+        <div class="collection-container">
+          <div class="row">
+              {% if collections[section.settings.collection].products_count < 3 %}
+                {% for product in collections[section.settings.collection].products %}
+                    <a href="{{ product.url }}" class="product_link half">
+                        <div class="product">
+                            <div class="product-photo">
+                                <img src="{{ product.featured_image | product_img_url: '500x' }}" alt="">
+                            </div>
+                            <div class="product-details">
+                                <div class="w-container">
+                                    <div class="content">
+                                        <span class="product-title">{{ product.title }}</span>
+                                        <span class="product-price">{{ product.price | money }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+              {% else %}
+                {% for product in collections[section.settings.collection] %}
+                    <a href="{{ product.url }}" class="product_link">
+                        <div class="product">
+                            <div class="product-photo">
+                                <img src="{{ product.images[0] | product_img_url: '800x' }}" alt="">
+                            </div>
+                            <div class="product-details">
+                                <div class="w-container">
+                                    <div class="content">
+                                        <span class="product-title">{{ product.title }}</span>
+                                        <span class="product-price">{{ product.price | money }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                {% endfor %}
+              {% endif %}
+          </div>
+        </div>
+      </div>
+    </section>
+    {% schema %}
+    {
+        "name":"Featured Collections",
+        "settings": [
+            {
+                "id":"collection",
+                "type":"collection",
+                "label":"Product Collection"
+            }
+        ],
+        "presets": [
+            {
+                "name":"Collections",
+                "category": "Collection"
+            }
+        ]
+    }
+    {% endschema %}

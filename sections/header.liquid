@@ -1,0 +1,133 @@
+<header>
+  {% if section.settings.content %}
+      <div id="banner">
+        <div class="container">
+          <div class="row">
+            <div class="col-padding col-sm-12">
+              <div class="text-container">
+                <div class="banner-txt text-center">{{section.settings.content}}</div>
+                <!-- <div class="banner-txt text-center">We stand in solidarity with all BIPOC communities > Learn More.</div>
+                <div class="banner-txt text-center">We stand in solidarity with all BIPOC communities > Learn More.</div>
+                <div class="banner-txt text-center">We stand in solidarity with all BIPOC communities > Learn More.</div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  {% endif %}
+    <div class="sm-header">
+      <div class="l-side">
+        <a class="" href="#">
+            <img src="{{section.settings.logo | img_url: '150x' }}" alt="logo">
+        </a>
+      </div>
+      <div class="r-side">
+        <a class="cart-btn" href="#">
+          <img class="header-icons bag" src="{{ 'shopping-bag.png' | asset_img_url: '150x' }} alt="shopping bag">
+        </a>
+        <a class="menu-btn">
+          <img class="header-icons menu" src="{{ 'menu.png' | asset_img_url: '150x' }} alt="menu button">
+        </a>
+      </div>
+    </div>
+    <!--Large Header-->
+    <div class="lg-header">
+      <div class="l-side">
+        <a class="logo" href="#">
+          <img src="{{section.settings.logo | img_url: '200x' }}" alt="logo">
+        </a>
+        <ul class="l-side_options">
+          {% for link in linklists.main-menu.links %}
+            {% if link.links == blank %}
+              <li class="l-side_option">{{ link.title | link_to: link.url }}</li>
+            {% else %}
+              <li class="l-side_option_extra">
+                <a class="extra_link" href="{{ link.url }}">{{ link.title }}</a>
+                <img class="down" src="{{ 'down.png' | asset_img_url: '300x' }} alt="down">
+              </li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="r-side">
+        <ul class="r-side_options">
+          <li class="r-side_option">
+            <a href="#">
+              <div class="text">
+                <span>Search</span>
+                <img class="header-icons bag" src="{{ 'loupe.png' | asset_img_url: '300x' }} alt="search">
+              </div>
+            </a>
+          </li>
+          <li class="r-side_option">
+            <a class="cart-btn" href="#">
+              <span>Cart</span>
+              <img class="header-icons bag" src="{{ 'shopping-bag.png' | asset_img_url: '300x' }} alt="shopping bag">
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!--Large Header-->
+
+
+</header>
+  <div class="mobile-menu">
+    {%- assign menu = linklists -%}
+    <div class="options-container">
+      {% for link in linklists.main-menu.links %}
+        {% assign item = link %}
+        {% if item.links == blank %}
+          <li class="level-1">{{ item.title | link_to: item.url }}</li>
+        {% else %}
+          <li class="level-1">
+            {{ item.title | link_to: item.url }}
+            <ul>
+              {% for child_link in item.links %}
+                <li class="level-2">{{ child_link.title | link_to: child_link.url }}</li>
+              {% endfor %}
+            </ul>
+          </li>
+        {% endif %}
+      {% endfor %}
+    </div>
+    <div class="overlay"></div>
+  </div>
+<div class="sandy">
+  <div class="desktop_menu">
+    <div class="catagories">
+      <h6>Collections</h6>
+      <ul>
+        {% for collection in collections %}
+         <li>
+           <a href="{{ collection.url }}">{{ collection.title }}</a> 
+         </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</div>
+{% schema %}
+  {
+    "name": "Header",
+    "default": {
+      "settings": { }
+    },
+    "settings": [
+        {
+            "type":"image_picker",
+            "id":"logo",
+            "label":"Use custom logo",
+            "info":"Upload your business logo"
+        },
+        {
+          "type":"text",
+          "id":"content",
+          "label":"Banner Text",
+          "info":"Enter text to promote"
+        }
+    ]
+  }
+{% endschema %}

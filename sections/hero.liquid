@@ -1,0 +1,61 @@
+<section class="hero">
+  <div class="img-container">
+    <img src="{{ section.settings.image | img_url: '2000x' }}" alt="hero-image">
+  </div>
+  <div class="collections-area">
+    <div class="w-container">
+      <div class="shop_the_edit-area">
+        <a href="{{ collections[section.settings.heroCollection].url }}"> 
+          {{ 'shop ' | append: section.settings.heroCollection | upcase }}
+        </a>
+      </div>
+    </div>
+    <div class="favourites-area">
+      <div class="w-container">
+        <div class="content">
+          <span>Favourites</span>
+          <a href{{ collections[section.settings.heroCollection].url }}" class="underline"><span>View Collection</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% schema %}
+  {
+    "presets": [
+      {
+        "name":"Hero",
+        "category":"Hero",
+         "settings": [
+            {
+                "type":"image_picker",
+                "id":"image",
+                "label":"Use your hero image",
+                "info":"Upload your hero image"
+            },
+            {
+                "type":"collection",
+                "id":"heroCollection",
+                "label": "Collection for hero",
+                "info":"Select the collection"
+            }
+        ]
+      }
+    ],
+    "name": "Hero",
+    "settings": [
+        {
+            "type":"image_picker",
+            "id":"image",
+            "label":"Use your hero image",
+            "info":"Upload your hero image"
+        },
+        {
+            "type":"collection",
+            "id":"heroCollection",
+            "label": "Collection for hero",
+            "info":"Select the collection"
+        }
+    ]
+  }
+{% endschema %}
